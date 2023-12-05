@@ -10,7 +10,7 @@ namespace PlaywrightTests;
 public class UnitTest1 : PageTest
 {
     [TestMethod]
-    public async Task HomepageHasPlaywrightInTitleAndGetStartedLinkLinkingtoTheIntroPage()
+    public async Task MpnAppTest()
     {
 
         await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
