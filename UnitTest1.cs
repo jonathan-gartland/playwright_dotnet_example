@@ -14,7 +14,8 @@ public class UnitTest1 : PageTest
     {
 
         await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
-        await Expect(Page.Locator("text=MPN Lookup For QuantiTray\u00ae Product Suite")).ToBeVisibleAsync();
+        var pageTitle = Page.Locator("text=MPN Lookup For QuantiTray\u00ae Product Suite");
+        await Expect(pageTitle).ToBeVisibleAsync();
 
     }
 }
