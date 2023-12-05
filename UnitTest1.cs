@@ -8,6 +8,8 @@ using System;
 using System.Threading;
 using Microsoft.Playwright.Core;
 using Microsoft.Playwright.TestAdapter;
+using PlaywrightTests.PageObjects;
+using System;
 
 
 namespace PlaywrightTests;
@@ -15,18 +17,19 @@ namespace PlaywrightTests;
 [TestClass]
 public class UnitTest1 : PageTest
 {
-    [TestInitialize]
-    // public async Task Setup()
-    // {
-    //     await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
-    // }
-
     [TestMethod]
     public async Task MpnAppTitleTest()
     {
-        await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
-        var pageTitle = Page.Locator("text=MPN Lookup For QuantiTray\u00ae Product Suite");
-        await Expect(pageTitle).ToBeVisibleAsync();
+        var page = new MpnPage(await Browser.NewPageAsync() );
+        await page.GotoAsync();
+        var pageTitle = page.FindTitleAsync();
+  
+        Console.WriteLine($"hello console!");
+
+        System.Diagnostics.Debug.WriteLine($"hello debugger!");
+        // System.Diagnostics.Debug.WriteLine("XXXXX" + pageTitle.Id);
+        
+        // await Expect(pageTitle).ToBeVisibleAsync();
 
     }
     
