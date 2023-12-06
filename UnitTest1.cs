@@ -22,13 +22,14 @@ public class UnitTest1 : PageTest
     {
         var page = new MpnPage(await Browser.NewPageAsync() );
         await page.GotoAsync();
-        var pageTitle = page.FindTitleAsync();
+        // var pageTitle = page.FindTitleAsync();
+        await page.inputValueAsync("22");
+        
   
         Console.WriteLine($"hello console!");
 
         System.Diagnostics.Debug.WriteLine($"hello debugger!");
         // System.Diagnostics.Debug.WriteLine("XXXXX" + pageTitle.Id);
-        
         // await Expect(pageTitle).ToBeVisibleAsync();
 
     }
