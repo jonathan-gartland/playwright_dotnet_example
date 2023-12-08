@@ -6,7 +6,7 @@ namespace PlaywrightTests;
 [TestClass]
 public class UnitTest1 : PageTest
 {
-  private MpnPage _mpnPage;
+  private MpnPage _mpnPage = null!;
   
   [TestMethod]
   public async Task LinkToInfoWorksTest() {
