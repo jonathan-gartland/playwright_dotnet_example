@@ -8,7 +8,6 @@ public class UnitTest1 : PageTest
 {
   private MpnPage _mpnPage;
   
-  
   [TestMethod]
   public async Task LinkToInfoWorksTest() {
     var page = await Browser.NewPageAsync();
@@ -47,6 +46,6 @@ public class UnitTest1 : PageTest
     var text = await _mpnPage.MpnValue();
     // it's zero, so easy test, need to encapsulate in loop
     // to test a few random values
-    Assert.AreEqual(text.TrimStart(), "0");
+    Assert.AreEqual(text, "0");
   }
 }

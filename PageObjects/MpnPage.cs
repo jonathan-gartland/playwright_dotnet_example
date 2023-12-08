@@ -46,7 +46,7 @@ public class MpnPage
   }
   public async Task<string> MpnValue() {
     var strsplit = await _QtMpnVal.InnerTextAsync();
-    var val = strsplit.Split(":")[1];
+    var val = strsplit.Split(":")[1].TrimStart();
     return val;
   }
 }
