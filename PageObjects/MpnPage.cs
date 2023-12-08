@@ -49,4 +49,9 @@ public class MpnPage
     var val = strsplit.Split(":")[1].TrimStart();
     return val;
   }
+
+  public async Task UpdateInputQt(string inPos) {
+    await _QtInput.FillAsync(inPos);
+  }
+  
 }

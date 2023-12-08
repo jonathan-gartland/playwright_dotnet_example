@@ -1,5 +1,7 @@
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 using Microsoft.Playwright.MSTest;
+using Newtonsoft.Json;
 
 namespace PlaywrightTests;
 
@@ -39,13 +41,18 @@ public class UnitTest1 : PageTest
   }
   
   [TestMethod]
-  public async Task MpnTest() {
+  public async Task QtValTest() {
+    string json = @"{""0"":""0"", ""22"":""19"", ""51"":""146.1""}";
+    var values = JsonConvert.DeserializeObject<Dictionary<string, string>>(json)!;
     var page = await Browser.NewPageAsync();
     _mpnPage = new MpnPage(page);
     await _mpnPage.GotoAsync();
-    var text = await _mpnPage.MpnValue();
-    // it's zero, so easy test, need to encapsulate in loop
-    // to test a few random values
-    Assert.AreEqual(text, "0");
+
+    foreach (KeyValuePair<string, string> val in values)
+    {
+      await _mpnPage.UpdateInputQt(val.Key);
+      var text = await _mpnPage.MpnValue();
+      Assert.AreEqual(text, val.Value);
+    }
   }
 }
