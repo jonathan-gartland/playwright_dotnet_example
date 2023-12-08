@@ -6,11 +6,13 @@ namespace PlaywrightTests;
 [TestClass]
 public class UnitTest1 : PageTest
 {
-  private MpnPage? _mpnPage;
+  private MpnPage _mpnPage; // = new MpnPage(await Browser.NewPageAsync());
+  
   
   [TestMethod]
   public async Task LinkToInfoWorksTest() {
-    _mpnPage = new MpnPage(await Browser.NewPageAsync());
+    var page = await Browser.NewPageAsync();
+    _mpnPage = new MpnPage(page);
     await _mpnPage.GotoAsync();
     await _mpnPage.ClickQtInfoLink();
     var leftPage = await _mpnPage.LeftPageWithQtInfoLink();
@@ -28,7 +30,8 @@ public class UnitTest1 : PageTest
   
   [TestMethod]
   public async Task LinkToMpnGenWorksTest() {
-    _mpnPage = new MpnPage(await Browser.NewPageAsync());
+    var page = await Browser.NewPageAsync();
+    _mpnPage = new MpnPage(page);
     await _mpnPage.GotoAsync();
     await _mpnPage.ClickMpnGenLink();
     var leftPage = await _mpnPage.LeftPageWithMpnGenLink();
@@ -39,13 +42,22 @@ public class UnitTest1 : PageTest
 
   [TestMethod]
   public async Task MpnAppAboutTest() {
-    await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
-    await Expect(Page).ToHaveURLAsync(new Regex(".*practice-pages"));
+    var page = await Browser.NewPageAsync();
+    _mpnPage = new MpnPage(page);
+    await _mpnPage.GotoAsync();
+    var mpnVisible = await _mpnPage.IsMpnValDisplayed();
+    Assert.IsTrue(mpnVisible);
+
   }
   
-  // [TestMethod]
-  // public async Task MpnTest() {
-  //   await Page.GotoAsync("https://jonathan-gartland.github.io/practice-pages");
-  //   await Expect(Page).ToHaveURLAsync(new Regex(".*practice-pages"));
-  // }
+  [TestMethod]
+  public async Task MpnTest() {
+    var page = await Browser.NewPageAsync();
+    _mpnPage = new MpnPage(page);
+    await _mpnPage.GotoAsync();
+    var text = await _mpnPage.MpnValue();
+    // it's zero, so easy test, need to encapsulate in loop
+    // to test a few random values
+    Assert.AreEqual(text.TrimStart(), "0");
+  }
 }
