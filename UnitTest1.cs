@@ -6,7 +6,7 @@ namespace PlaywrightTests;
 [TestClass]
 public class UnitTest1 : PageTest
 {
-  private MpnPage _mpnPage; // = new MpnPage(await Browser.NewPageAsync());
+  private MpnPage _mpnPage;
   
   
   [TestMethod]
@@ -19,15 +19,6 @@ public class UnitTest1 : PageTest
     Assert.IsTrue(leftPage);
   }
   
-  // [TestMethod]
-  // public async Task LinkToQt2KWorksTest() {
-  //   _mpnPage = new MpnPage(await Browser.NewPageAsync());
-  //   await _mpnPage.GotoAsync();
-  //   await _mpnPage.ClickQt2KPdfLink();
-  //   var leftPage = await _mpnPage.LeftPageWithQt2KLink();
-  //   Assert.IsTrue(leftPage);
-  // }
-  
   [TestMethod]
   public async Task LinkToMpnGenWorksTest() {
     var page = await Browser.NewPageAsync();
@@ -38,8 +29,6 @@ public class UnitTest1 : PageTest
     Assert.IsTrue(leftPage);
   }
   
-  
-
   [TestMethod]
   public async Task MpnAppAboutTest() {
     var page = await Browser.NewPageAsync();
